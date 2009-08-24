@@ -4,23 +4,49 @@
 
 == DESCRIPTION:
 
-FIX (describe your package)
+Ever need to have process run regularly for your rails app?  Ever want to use cron as the answer?  Sure you have!  So lets get it done.
 
-== FEATURES/PROBLEMS:
+It sounds pretty easy... use cron to automate the periodic execution of some rake tasks... but in practice we run into a couple of problems:
 
-* FIX (list of features or problems)
+* Keeping the cron tasks in sync with your capistrano deploys
+* preventing the cron tasks from running while you are deploying/migrating
+* keeping the cron tasks from stepping on each other if they are taking longer than expected to run
+* having cron logging output intermingled with logging from your controllers
 
-== SYNOPSIS:
+Ever have any of these problems?  I know I have.  So lets solve them once and for all, and bundle it into a gem with some reusable conventions.  Enter Crondonkulous!
 
-  FIX (code sample of usage)
+== Here's what you get:
+* a crontab file with all the silly little syntax you need to specify tasks for:
+** every minute
+** every 5 minutes
+** every 15 minutes
+** every hour
+** every day
+** every week
+** every month
+* a crondonkulous.rake template that separates logging out of your controller's log file, with a sane naming convention for logs
+* a lockfile, so that rake tasks invoked with cron won't start if there is another one running (and you specify the number of times to retry)
+* capistrano tasks that:
+** stop the cronned rake tasks while deploying
+** wait until any running ones are done before continuing the deploy
+** load in any new cron entries when the webapp restarts.
+
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* Its a gem for rails, so.. uh, all of that stuff.
+* a capistrano deploy (will gladly accept patches for vlad)
+* a server running cron that allows crontab entries by user
+* also relies on the lockfile gem
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install bokmann-crondonkulous
+* ./script/generate crondonkulous
+* follow the instructions to modify the files it puts in your project
+
+== HISTORY:
+A couple of years ago I wrote the 'automate repeatable tasks' recipe for the book Advanced Rails Recipes from Pragmatic Bookshelf.  Some of these ideas are represented there, but they have evolved a lot as I have added better integration with capistrano, reliance on the lockfile gem, etc.
 
 == LICENSE:
 
