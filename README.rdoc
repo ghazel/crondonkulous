@@ -17,19 +17,19 @@ Ever have any of these problems?  I know I have.  So lets solve them once and fo
 
 == Here's what you get:
 * a crontab file with all the silly little syntax you need to specify tasks for:
-** every minute
-** every 5 minutes
-** every 15 minutes
-** every hour
-** every day
-** every week
-** every month
+  * every minute
+  * every 5 minutes
+  * every 15 minutes
+  * every hour
+  * every day
+  * every week
+  * every month
 * a crondonkulous.rake template that separates logging out of your controller's log file, with a sane naming convention for logs
 * a lockfile, so that rake tasks invoked with cron won't start if there is another one running (and you specify the number of times to retry)
 * capistrano tasks that:
-** stop the cronned rake tasks while deploying
-** wait until any running ones are done before continuing the deploy
-** load in any new cron entries when the webapp restarts.
+  * stop the cronned rake tasks while deploying
+  * wait until any running ones are done before continuing the deploy
+  * load in any new cron entries when the webapp restarts.
 
 
 == REQUIREMENTS:
