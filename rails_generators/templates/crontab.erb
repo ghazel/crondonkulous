@@ -1,0 +1,7 @@
+*/1 * * * * rake -f <%= current_path %>/Rakefile RAILS_ENV=<%= rails_env %> crondonkulous:every_minute
+#*/5 * * * * rake -f <%= current_path %>/Rakefile RAILS_ENV=<%= rails_env %> crondonkulous:every_5_minutes
+#*/15 * * * * rake -f <%= current_path %>/Rakefile RAILS_ENV=<%= rails_env %> crondonkulous:every_15_minutes
+01 * * * * rake -f <%= current_path %>/Rakefile RAILS_ENV=<%= rails_env %> crondonkulous:every_hour
+02 0 * * * rake -f <%= current_path %>/Rakefile RAILS_ENV=<%= rails_env %> crondonkulous:every_day
+03 0 * * 1 rake -f <%= current_path %>/Rakefile RAILS_ENV=<%= rails_env %> crondonkulous:every_week
+04 0 1 * * rake -f <%= current_path %>/Rakefile RAILS_ENV=<%= rails_env %> crondonkulous:every_month
