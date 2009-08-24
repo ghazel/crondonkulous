@@ -1,20 +1,15 @@
-require 'rubygems'
-gem 'hoe', '>= 2.1.0'
-require 'hoe'
-require 'fileutils'
-require './lib/crondonkulous'
-
-Hoe.plugin :newgem
-
-# Generate all the Rake tasks
-# Run 'rake -T' to see list of generated tasks (from gem root directory)
-$hoe = Hoe.spec 'crondonkulous' do
-  self.developer 'David Bock', 'dbock@codesherpas.com'
-  self.rubyforge_name       = self.name # TODO this is default value
-  self.extra_deps         = [['lockfile','>= 1.4.0']]
-
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "crondonkulous"
+    gemspec.summary = "A generator and conventions for using cron with rake tasks in a rails application."
+    gemspec.description = "A generator and conventions for using cron with rake tasks in a rails application."
+    gemspec.email = "dbock@codesherpas.com"
+    gemspec.homepage = "http://github.com/bokmann/crondonkulous"
+    gemspec.authors = ["David Bock"]
+    gemspec.add_dependency('lockfile', '>= 1.4.0')
+    
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
-
-require 'newgem/tasks'
-Dir['tasks/**/*.rake'].each { |t| load t }
-
