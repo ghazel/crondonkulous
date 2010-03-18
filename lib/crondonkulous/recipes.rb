@@ -23,7 +23,6 @@ Capistrano::Configuration.instance.load do
         sudo "crontab -r -u #{u}"
       rescue
       end
-      sleep 30 #TODO I want to make this safer, but lets give stuff a chance to finish...
     end
     
   end
